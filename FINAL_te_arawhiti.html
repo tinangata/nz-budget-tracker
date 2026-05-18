@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Māori Language &amp; Culture - NZ Budget B23-B26</title>
+<title>Te Arawhiti / Tari Whakatau - NZ Budget B23-B26</title>
 <style>
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -36,22 +36,22 @@ h2{font-size:18px;font-weight:700;color:#111;font-family:monospace;line-height:1
 <div class="wrap">
   <div class="top">
     <div>
-      <h2>Māori Language &amp; Culture</h2>
+      <h2>Te Arawhiti / Tari Whakatau</h2>
       <span class="grp-tag">Maori &middot; NZ Budget B23-B26</span>
     </div>
     <div class="pct-block">
-      <div class="pct-num">&#9660;75.6%</div>
+      <div class="pct-num">&#9660;74.1%</div>
       <div class="pct-lbl">B23 to B26 total change</div>
     </div>
   </div>
   <div class="chart-area"><canvas id="myChart"></canvas></div>
-  <div class="yr-row"><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#FAFAF8;border:1px solid #F0EDE8"><div style="font-size:15px;font-weight:500;color:#333;font-family:monospace">$45M</div><div style="font-size:10px;color:#999;font-family:monospace">B23</div><div style="min-height:17px;margin-top:2px"></div></div><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#FAFAF8;border:1px solid #F0EDE8"><div style="font-size:15px;font-weight:500;color:#333;font-family:monospace">$28M</div><div style="font-size:10px;color:#999;font-family:monospace">B24</div><div style="min-height:17px;margin-top:2px"><span style="color:#1E8449;font-size:11px;font-weight:700">&#9660;37.8%</span></div></div><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#FAFAF8;border:1px solid #F0EDE8"><div style="font-size:15px;font-weight:500;color:#333;font-family:monospace">$16M</div><div style="font-size:10px;color:#999;font-family:monospace">B25</div><div style="min-height:17px;margin-top:2px"><span style="color:#1E8449;font-size:11px;font-weight:700">&#9660;42.9%</span></div></div><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#E74C3C09;border:1px dashed #E74C3C55"><div style="font-size:15px;font-weight:700;color:#E74C3C;font-family:monospace">$11M</div><div style="font-size:10px;color:#999;font-family:monospace">B26 &#9670;</div><div style="min-height:17px;margin-top:2px"><span style="color:#1E8449;font-size:11px;font-weight:700">&#9660;31.2%</span></div></div></div>
+  <div class="yr-row"><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#FAFAF8;border:1px solid #F0EDE8"><div style="font-size:15px;font-weight:500;color:#333;font-family:monospace">$85M</div><div style="font-size:10px;color:#999;font-family:monospace">B23</div><div style="min-height:17px;margin-top:2px"></div></div><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#FAFAF8;border:1px solid #F0EDE8"><div style="font-size:15px;font-weight:500;color:#333;font-family:monospace">$52M</div><div style="font-size:10px;color:#999;font-family:monospace">B24</div><div style="min-height:17px;margin-top:2px"><span style="color:#1E8449;font-size:11px;font-weight:700">&#9660;38.8%</span></div></div><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#FAFAF8;border:1px solid #F0EDE8"><div style="font-size:15px;font-weight:500;color:#333;font-family:monospace">$31M</div><div style="font-size:10px;color:#999;font-family:monospace">B25</div><div style="min-height:17px;margin-top:2px"><span style="color:#1E8449;font-size:11px;font-weight:700">&#9660;40.4%</span></div></div><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#A9322609;border:1px dashed #A9322655"><div style="font-size:15px;font-weight:700;color:#A93226;font-family:monospace">$22M</div><div style="font-size:10px;color:#999;font-family:monospace">B26 &#9670;</div><div style="min-height:17px;margin-top:2px"><span style="color:#1E8449;font-size:11px;font-weight:700">&#9660;29.0%</span></div></div></div>
   <div class="meta-row"><span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:3px;font-family:monospace;letter-spacing:.04em;background:#FDEDEC;color:#922B21;border:1px solid #E74C3C55">PROJECTED</span><button class="dl-btn" onclick="exportPNG()">Download PNG</button></div>
   <div class="divider"></div>
-  <div class="bullets"><h4>Key Changes</h4><ul><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B24: Aotearoa Reorua (Bilingual Towns & Cities) cut 64% — from $1.1M to $400K/yr</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B24: Matariki public holiday funding cut 45% — from $5.5M to $3M</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B24: Te reo Māori bilingual signage funding cut</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B25: Aotearoa Reorua scrapped entirely — $1.6M returned to Crown</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B25: Māori Language Funding to Support Provision reprioritised</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B25: Climate Resilience for Māori fund cut 33% to avg $2.6M/yr</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B26: No language or culture restoration signals</li></ul></div>
+  <div class="bullets"><h4>Key Changes</h4><ul><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B24: Significant cuts to operational budget and staffing begin</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B25: ~40% staff reduction enacted — 44 roles to TPK, 42 roles disestablished</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B25: Renamed Te Tari Whakatau with narrowed mandate</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B25: $9.5M in historical Treaty claimant funding returned to Crown</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">Auditor-General (2025): Crown lacks assurance settlements are being honoured</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">CE Lil Anderson: years needed to rebuild lost institutional knowledge</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">26 Treaty settlements still to be negotiated — now with depleted capacity</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B26: No restoration signals</li></ul></div>
   <div class="note-box">
-    <p style="margin-bottom:10px">Te Taura Whiri i te Reo Māori + Aotearoa Reorua programme + Matariki public holiday fund + te reo Māori signage funding. Excludes broadcasting (Te Māngai Pāho, Māori TV — separate media appropriations). B23: ~$45M. B24: Aotearoa Reorua cut 64% to $400K/yr; Matariki cut 45%; te reo signage cut. B25: Aotearoa Reorua scrapped ($1.6M returned); Māori Language Funding reprioritised. Source: Spinoff, RNZ, budget.govt.nz Vote 7.</p>
-    <div class="b26-note"><strong>B26 (PROJECTED): </strong>Aotearoa Reorua (Bilingual Towns) scrapped in B25. Te reo signage funding removed in B24. Matariki public holiday funding cut 45% in B24. No B26 restoration signals for any of these programmes.</div>
+    <p style="margin-bottom:10px">Vote Te Arawhiti/Tari Whakatau departmental operational budget. Held five core functions: active Treaty negotiation, post-settlement monitoring, Te Haeata portal, public sector Treaty capability (Whāinga Amorangi), and Takutai Moana administration. B23: ~$85M. B24: significant cuts begin. B25: ~40% staff cut; renamed Te Tari Whakatau; CE Lil Anderson warned of loss of institutional knowledge. Auditor-General 2025 found Crown lacks assurance settlements are being honoured. Source: budget.govt.nz, RNZ, Auditor-General report.</p>
+    <div class="b26-note"><strong>B26 (PROJECTED): </strong>~40% staff reduction enacted in B25 cycle. 44 roles transferred to Te Puni Kōkiri; 42 roles proposed for disestablishment. No restoration signalled for B26. Institutional memory of Treaty negotiations departing with staff.</div>
   </div>
   <div class="footer">Source: budget.govt.nz Vote documents &middot; Treasury Estimates &middot; RNZ &middot; The Spinoff &middot; Waatea News<br>B26 figures projected from established trajectory unless noted as confirmed. Published for tinangata.com</div>
 </div>
@@ -103,8 +103,8 @@ var coalitionPlugin = {
     data:{
       labels:["B23", "B24", "B25", "B26"],
       datasets:[{
-        data:[45, 28, 16, 11], borderColor:'#E74C3C',
-        pointBackgroundColor:["#E74C3C", "#E74C3C", "#E74C3C", "#fff"], pointBorderColor:["#E74C3C", "#E74C3C", "#E74C3C", "#E74C3C"],
+        data:[85, 52, 31, 22], borderColor:'#A93226',
+        pointBackgroundColor:["#A93226", "#A93226", "#A93226", "#fff"], pointBorderColor:["#A93226", "#A93226", "#A93226", "#A93226"],
         pointBorderWidth:[0, 0, 0, 2.5], pointRadius:[5, 5, 5, 7],
         pointHoverRadius:9, borderWidth:3, tension:0.3, fill:false
       }]
@@ -113,7 +113,7 @@ var coalitionPlugin = {
       responsive:true, maintainAspectRatio:false,
       plugins:{
         legend:{display:false},
-        tooltip:{backgroundColor:'#fff',titleColor:'#444',bodyColor:'#111',borderColor:'#E74C3C',borderWidth:1,padding:10,
+        tooltip:{backgroundColor:'#fff',titleColor:'#444',bodyColor:'#111',borderColor:'#A93226',borderWidth:1,padding:10,
           callbacks:{label:function(ctx){var v=ctx.raw;return v>=1000?'$'+(v/1000).toFixed(1)+'B':'$'+v.toFixed(0)+'M';}}}
       },
       scales:{
@@ -130,7 +130,7 @@ window.exportPNG = function() {
   c.fillStyle = '#ffffff'; c.fillRect(0,0,off.width,off.height);
   c.drawImage(canvas,0,0);
   var a = document.createElement('a');
-  a.download = 'maori_language-B23-B26.png';
+  a.download = 'te_arawhiti-B23-B26.png';
   a.href = off.toDataURL('image/png'); a.click();
 };
 })();

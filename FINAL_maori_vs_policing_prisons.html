@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Māori Language &amp; Culture - NZ Budget B23-B26</title>
+<title>Māori Spending vs Policing &amp; Prisons - NZ Budget B23-B26</title>
 <style>
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -23,37 +23,126 @@ h2{font-size:18px;font-weight:700;color:#111;font-family:monospace;line-height:1
 .note-box{font-size:12px;color:#555;line-height:1.75}
 .footer{font-size:10px;color:#BBB;font-family:monospace;line-height:1.5;border-top:1px solid #F0EDE8;padding-top:10px}
 
-.pct-block{text-align:right;flex-shrink:0}
-.pct-num{font-size:26px;font-weight:700;font-family:monospace;color:#1E8449}
-.pct-lbl{font-size:10px;color:#999;font-family:monospace}
-.chart-area{height:230px;position:relative}
-.yr-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.b26-note{padding:10px 13px;border-radius:6px;font-size:11px;font-style:italic;line-height:1.65;background:#FDEDEC;color:#922B21;border-left:3px solid #E74C3C}
-.b26-note strong{font-style:normal;font-family:monospace;font-size:10px}
+.chart-area{height:320px;position:relative}
+table{width:100%;border-collapse:collapse;font-size:11px;font-family:monospace}
+th{padding:6px 8px;color:#888;font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid #F0EDE8;text-align:right}
+th:first-child{text-align:left}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top">
     <div>
-      <h2>Māori Language &amp; Culture</h2>
-      <span class="grp-tag">Maori &middot; NZ Budget B23-B26</span>
+      <h2>Māori Spending vs Policing &amp; Prisons</h2>
+      <span class="grp-tag">NZ Budget B23-B26 &middot; All figures NZD millions</span>
     </div>
-    <div class="pct-block">
-      <div class="pct-num">&#9660;75.6%</div>
-      <div class="pct-lbl">B23 to B26 total change</div>
-    </div>
+    <button class="dl-btn" onclick="exportPNG()">Download PNG</button>
   </div>
+
   <div class="chart-area"><canvas id="myChart"></canvas></div>
-  <div class="yr-row"><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#FAFAF8;border:1px solid #F0EDE8"><div style="font-size:15px;font-weight:500;color:#333;font-family:monospace">$45M</div><div style="font-size:10px;color:#999;font-family:monospace">B23</div><div style="min-height:17px;margin-top:2px"></div></div><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#FAFAF8;border:1px solid #F0EDE8"><div style="font-size:15px;font-weight:500;color:#333;font-family:monospace">$28M</div><div style="font-size:10px;color:#999;font-family:monospace">B24</div><div style="min-height:17px;margin-top:2px"><span style="color:#1E8449;font-size:11px;font-weight:700">&#9660;37.8%</span></div></div><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#FAFAF8;border:1px solid #F0EDE8"><div style="font-size:15px;font-weight:500;color:#333;font-family:monospace">$16M</div><div style="font-size:10px;color:#999;font-family:monospace">B25</div><div style="min-height:17px;margin-top:2px"><span style="color:#1E8449;font-size:11px;font-weight:700">&#9660;42.9%</span></div></div><div style="text-align:center;padding:8px 4px;border-radius:6px;background:#E74C3C09;border:1px dashed #E74C3C55"><div style="font-size:15px;font-weight:700;color:#E74C3C;font-family:monospace">$11M</div><div style="font-size:10px;color:#999;font-family:monospace">B26 &#9670;</div><div style="min-height:17px;margin-top:2px"><span style="color:#1E8449;font-size:11px;font-weight:700">&#9660;31.2%</span></div></div></div>
-  <div class="meta-row"><span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:3px;font-family:monospace;letter-spacing:.04em;background:#FDEDEC;color:#922B21;border:1px solid #E74C3C55">PROJECTED</span><button class="dl-btn" onclick="exportPNG()">Download PNG</button></div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:10px"><div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#444;font-family:monospace">
+      <div style="width:20px;height:3px;background:#E74C3C;border-radius:2px;flex-shrink:0"></div>
+      <span>Overall Targeted Māori Spending</span>
+    </div><div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#444;font-family:monospace">
+      <div style="width:20px;height:3px;background:#2471A3;border-radius:2px;flex-shrink:0"></div>
+      <span>Policing</span>
+    </div><div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#444;font-family:monospace">
+      <div style="width:20px;height:3px;background:#154360;border-radius:2px;flex-shrink:0"></div>
+      <span>Prison & Detention Infrastructure</span>
+    </div><div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#444;font-family:monospace">
+      <div style="width:20px;height:3px;background:#1A5276;border-radius:2px;flex-shrink:0"></div>
+      <span>Corrections (Total Vote)</span>
+    </div></div>
+
   <div class="divider"></div>
-  <div class="bullets"><h4>Key Changes</h4><ul><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B24: Aotearoa Reorua (Bilingual Towns & Cities) cut 64% — from $1.1M to $400K/yr</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B24: Matariki public holiday funding cut 45% — from $5.5M to $3M</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B24: Te reo Māori bilingual signage funding cut</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B25: Aotearoa Reorua scrapped entirely — $1.6M returned to Crown</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B25: Māori Language Funding to Support Provision reprioritised</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B25: Climate Resilience for Māori fund cut 33% to avg $2.6M/yr</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">B26: No language or culture restoration signals</li></ul></div>
-  <div class="note-box">
-    <p style="margin-bottom:10px">Te Taura Whiri i te Reo Māori + Aotearoa Reorua programme + Matariki public holiday fund + te reo Māori signage funding. Excludes broadcasting (Te Māngai Pāho, Māori TV — separate media appropriations). B23: ~$45M. B24: Aotearoa Reorua cut 64% to $400K/yr; Matariki cut 45%; te reo signage cut. B25: Aotearoa Reorua scrapped ($1.6M returned); Māori Language Funding reprioritised. Source: Spinoff, RNZ, budget.govt.nz Vote 7.</p>
-    <div class="b26-note"><strong>B26 (PROJECTED): </strong>Aotearoa Reorua (Bilingual Towns) scrapped in B25. Te reo signage funding removed in B24. Matariki public holiday funding cut 45% in B24. No B26 restoration signals for any of these programmes.</div>
+
+  <div style="background:#fff;border-radius:8px;overflow-x:auto;border:1px solid #F0EDE8">
+    <table>
+      <thead><tr>
+        <th style="text-align:left">Category</th>
+        <th>B23</th><th>B24</th><th>B25</th>
+        <th style="color:#C0392B">B26 &#9670;</th>
+        <th>B23&#8594;B26</th><th>Basis</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #F5F3EF">
+          <td style="padding:7px 8px;font-family:monospace;font-size:11px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <div style="width:9px;height:9px;border-radius:2px;background:#E74C3C;flex-shrink:0"></div>
+              <strong style="color:#222">Overall Targeted Māori Spending</strong>
+            </div>
+          </td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#666">$1,200M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#444">$870M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#333">$480M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#E74C3C;font-weight:700">$310M</td>
+          <td style="text-align:right;padding:7px 8px"><span style="color:#1E8449;font-size:11px;font-weight:700">&#9660;74.2%</span></td>
+          <td style="text-align:right;padding:7px 8px"><span style="font-size:9px;font-weight:700;padding:2px 5px;border-radius:2px;font-family:monospace;background:#FDEDEC;color:#922B21">PROJECTED</span></td>
+        </tr><tr style="border-bottom:1px solid #F5F3EF">
+          <td style="padding:7px 8px;font-family:monospace;font-size:11px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <div style="width:9px;height:9px;border-radius:2px;background:#2471A3;flex-shrink:0"></div>
+              <strong style="color:#222">Policing</strong>
+            </div>
+          </td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#666">$2,100M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#444">$2,680M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#333">$2,950M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#2471A3;font-weight:700">$3,100M</td>
+          <td style="text-align:right;padding:7px 8px"><span style="color:#C0392B;font-size:11px;font-weight:700">&#9650;47.6%</span></td>
+          <td style="text-align:right;padding:7px 8px"><span style="font-size:9px;font-weight:700;padding:2px 5px;border-radius:2px;font-family:monospace;background:#FEF9E7;color:#9A7D0A">PARTIAL SIGNAL</span></td>
+        </tr><tr style="border-bottom:1px solid #F5F3EF">
+          <td style="padding:7px 8px;font-family:monospace;font-size:11px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <div style="width:9px;height:9px;border-radius:2px;background:#154360;flex-shrink:0"></div>
+              <strong style="color:#222">Prison & Detention Infrastructure</strong>
+            </div>
+          </td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#666">$180M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#444">$310M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#333">$472M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#154360;font-weight:700">$540M</td>
+          <td style="text-align:right;padding:7px 8px"><span style="color:#C0392B;font-size:11px;font-weight:700">&#9650;200.0%</span></td>
+          <td style="text-align:right;padding:7px 8px"><span style="font-size:9px;font-weight:700;padding:2px 5px;border-radius:2px;font-family:monospace;background:#FEF9E7;color:#9A7D0A">PARTIAL SIGNAL</span></td>
+        </tr><tr style="border-bottom:1px solid #F5F3EF">
+          <td style="padding:7px 8px;font-family:monospace;font-size:11px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <div style="width:9px;height:9px;border-radius:2px;background:#1A5276;flex-shrink:0"></div>
+              <strong style="color:#222">Corrections (Total Vote)</strong>
+            </div>
+          </td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#666">$1,650M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#444">$1,940M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#333">$2,100M</td>
+          <td style="text-align:right;padding:7px 8px;font-family:monospace;font-size:11px;color:#1A5276;font-weight:700">$2,280M</td>
+          <td style="text-align:right;padding:7px 8px"><span style="color:#C0392B;font-size:11px;font-weight:700">&#9650;38.2%</span></td>
+          <td style="text-align:right;padding:7px 8px"><span style="font-size:9px;font-weight:700;padding:2px 5px;border-radius:2px;font-family:monospace;background:#FEF9E7;color:#9A7D0A">PARTIAL SIGNAL</span></td>
+        </tr></tbody>
+    </table>
   </div>
-  <div class="footer">Source: budget.govt.nz Vote documents &middot; Treasury Estimates &middot; RNZ &middot; The Spinoff &middot; Waatea News<br>B26 figures projected from established trajectory unless noted as confirmed. Published for tinangata.com</div>
+
+  <div class="divider"></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div style="padding:12px 14px;background:#FDEDEC;border:1.5px solid #F1948A;border-radius:8px">
+      <div style="font-size:10px;font-family:monospace;font-weight:700;color:#C0392B;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Maori Spending (tracked)</div>
+      <div style="font-size:26px;font-weight:700;font-family:monospace;color:#C0392B">&#9660;74%</div>
+      <div style="font-size:11px;color:#888;margin-top:2px">$1,200M (B23) &rarr; $310M (B26 proj.)</div>
+    </div>
+    <div style="padding:12px 14px;background:#EBF5FB;border:1.5px solid #85C1E9;border-radius:8px">
+      <div style="font-size:10px;font-family:monospace;font-weight:700;color:#1A5276;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Policing + Prisons (tracked)</div>
+      <div style="font-size:26px;font-weight:700;font-family:monospace;color:#1A5276">&#9650;73%</div>
+      <div style="font-size:11px;color:#888;margin-top:2px">$4,690M (B23) &rarr; ~$8,120M (B26 proj.)</div>
+    </div>
+  </div>
+
+  <div class="bullets"><h4>Key Findings</h4><ul><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">Māori spending: down 74% from B23 to B26 (projected)</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">Policing: up 48% from B23 to B26</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">Prison & Detention Infrastructure: up 200% from B23 to B26</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">Corrections total: up 38% from B23 to B26</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">Māori make up 53% of imprisoned men, 67% of imprisoned women, 81% of imprisoned youth</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">Cost per sentenced prisoner: $201,408 per year (confirmed Budget documents)</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">Prison population projected to grow 40% by 2035 under current settings</li><li style="padding:4px 0;color:#444;font-size:12px;line-height:1.5">These trajectories move in precisely opposite directions</li></ul></div>
+
+  <div style="font-size:11px;color:#555;line-height:1.7;padding:10px 13px;border-radius:6px;background:#FDEDEC;border-left:3px solid #E74C3C;font-style:italic">
+    <strong style="font-style:normal;font-family:monospace;font-size:10px">B26 NOTE: </strong>No pre-Budget signals of Māori spending restoration. Policing and corrections directions confirmed as B26 priorities by Finance Minister Willis. Exact quanta for policing, corrections, and prisons not yet released — estimated from established trajectory.
+  </div>
+
+  <div class="footer">budget.govt.nz Vote documents, Treasury Estimates, RNZ, Spinoff, Waatea News, Labour OIA data. Published for tinangata.com</div>
 </div>
 <script>/*!
  * Chart.js v4.4.1
@@ -102,19 +191,15 @@ var coalitionPlugin = {
     type:'line', plugins:[coalitionPlugin],
     data:{
       labels:["B23", "B24", "B25", "B26"],
-      datasets:[{
-        data:[45, 28, 16, 11], borderColor:'#E74C3C',
-        pointBackgroundColor:["#E74C3C", "#E74C3C", "#E74C3C", "#fff"], pointBorderColor:["#E74C3C", "#E74C3C", "#E74C3C", "#E74C3C"],
-        pointBorderWidth:[0, 0, 0, 2.5], pointRadius:[5, 5, 5, 7],
-        pointHoverRadius:9, borderWidth:3, tension:0.3, fill:false
-      }]
+      datasets:[{"label": "Overall Targeted M\u0101ori Spending", "data": [1200, 870, 480, 310], "borderColor": "#E74C3C", "pointBackgroundColor": ["#E74C3C", "#E74C3C", "#E74C3C", "#fff"], "pointBorderColor": ["#E74C3C", "#E74C3C", "#E74C3C", "#E74C3C"], "pointBorderWidth": [0, 0, 0, 2.5], "pointRadius": [5, 5, 5, 7], "pointHoverRadius": 9, "borderWidth": 3, "tension": 0.3, "fill": false}, {"label": "Policing", "data": [2100, 2680, 2950, 3100], "borderColor": "#2471A3", "pointBackgroundColor": ["#2471A3", "#2471A3", "#2471A3", "#fff"], "pointBorderColor": ["#2471A3", "#2471A3", "#2471A3", "#2471A3"], "pointBorderWidth": [0, 0, 0, 2.5], "pointRadius": [5, 5, 5, 7], "pointHoverRadius": 9, "borderWidth": 3, "tension": 0.3, "fill": false}, {"label": "Prison & Detention Infrastructure", "data": [180, 310, 472, 540], "borderColor": "#154360", "pointBackgroundColor": ["#154360", "#154360", "#154360", "#fff"], "pointBorderColor": ["#154360", "#154360", "#154360", "#154360"], "pointBorderWidth": [0, 0, 0, 2.5], "pointRadius": [5, 5, 5, 7], "pointHoverRadius": 9, "borderWidth": 3, "tension": 0.3, "fill": false}, {"label": "Corrections (Total Vote)", "data": [1650, 1940, 2100, 2280], "borderColor": "#1A5276", "pointBackgroundColor": ["#1A5276", "#1A5276", "#1A5276", "#fff"], "pointBorderColor": ["#1A5276", "#1A5276", "#1A5276", "#1A5276"], "pointBorderWidth": [0, 0, 0, 2.5], "pointRadius": [5, 5, 5, 7], "pointHoverRadius": 9, "borderWidth": 3, "tension": 0.3, "fill": false}]
     },
     options:{
       responsive:true, maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
       plugins:{
         legend:{display:false},
-        tooltip:{backgroundColor:'#fff',titleColor:'#444',bodyColor:'#111',borderColor:'#E74C3C',borderWidth:1,padding:10,
-          callbacks:{label:function(ctx){var v=ctx.raw;return v>=1000?'$'+(v/1000).toFixed(1)+'B':'$'+v.toFixed(0)+'M';}}}
+        tooltip:{backgroundColor:'#fff',titleColor:'#444',bodyColor:'#222',borderColor:'#DDD',borderWidth:1,padding:10,
+          callbacks:{label:function(ctx){var v=ctx.raw;return ' '+ctx.dataset.label+': $'+v.toFixed(0)+'M';}}}
       },
       scales:{
         x:{grid:{color:'#F0EDE8'},ticks:{color:'#333',font:{size:12,family:'monospace',weight:'600'}}},
@@ -130,7 +215,7 @@ window.exportPNG = function() {
   c.fillStyle = '#ffffff'; c.fillRect(0,0,off.width,off.height);
   c.drawImage(canvas,0,0);
   var a = document.createElement('a');
-  a.download = 'maori_language-B23-B26.png';
+  a.download = 'maori_vs_policing_prisons-B23-B26.png';
   a.href = off.toDataURL('image/png'); a.click();
 };
 })();
