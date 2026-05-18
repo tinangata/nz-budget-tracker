@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Marae Infrastructure — NZ Budget B23–B26</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,'Times New Roman',serif;background:#F5F4F0;padding:0;min-height:100vh;display:flex;align-items:stretch}
+.wrap{background:#fff;border-radius:12px;padding:22px 24px;margin:16px;flex:1;box-shadow:0 2px 16px rgba(0,0,0,.07);border:1.5px solid #E5E2DC;display:flex;flex-direction:column;gap:14px;max-width:680px;width:100%}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.group-tag{font-size:9px;padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em;font-family:monospace;background:#FEF0EF;color:#A93226;border:1px solid #A9322644;display:inline-block;margin-top:5px}
+h2{font-size:17px;font-weight:700;color:#111;font-family:monospace;line-height:1.3}
+.pct-block{text-align:right;flex-shrink:0}
+.pct-num{font-size:26px;font-weight:700;font-family:monospace;color:#1E8449}
+.pct-lbl{font-size:10px;color:#888;font-family:monospace}
+.chart-area{height:220px;position:relative}
+.year-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.meta-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:3px;font-family:monospace;letter-spacing:.04em;background:#FDEDEC;color:#922B21;border:1px solid #E74C3C55}
+.dl-btn{padding:5px 12px;font-family:monospace;font-size:11px;cursor:pointer;border-radius:4px;background:#F5F5F5;border:1px solid #DDD;color:#444;transition:all .12s}
+.dl-btn:hover{background:#E8E4DE;color:#111}
+.note-box{font-size:12px;color:#555;line-height:1.7;padding-top:12px;border-top:1px solid #F0EDE8}
+.b26-note{padding:9px 12px;border-radius:5px;font-size:11px;font-style:italic;line-height:1.65;background:#FDEDEC;color:#922B21;border-left:3px solid #E74C3C}
+.b26-note strong{font-style:normal;font-family:monospace;font-size:10px}
+.footer-attr{font-size:10px;color:#AAA;font-family:monospace;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h2>Marae Infrastructure</h2>
+      <span class="group-tag">Māori</span>
+    </div>
+    <div class="pct-block">
+      <div class="pct-num">▼78.6%</div>
+      <div class="pct-lbl">B23 → B26</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <canvas id="chart"></canvas>
+  </div>
+
+  <div class="year-row"><div style="text-align:center;padding:6px 4px;border-radius:5px;background:#FAFAF8;border:1px solid transparent">
+          <div style="font-size:14px;font-weight:500;color:#333;font-family:monospace">$28M</div>
+          <div style="font-size:10px;color:#888;font-family:monospace">B23</div>
+          
+        </div><div style="text-align:center;padding:6px 4px;border-radius:5px;background:#FAFAF8;border:1px solid transparent">
+          <div style="font-size:14px;font-weight:500;color:#333;font-family:monospace">$14M</div>
+          <div style="font-size:10px;color:#888;font-family:monospace">B24</div>
+          <div style="color:#1E8449;font-size:11px;font-weight:700;font-family:monospace">▼50.0%</div>
+        </div><div style="text-align:center;padding:6px 4px;border-radius:5px;background:#FAFAF8;border:1px solid transparent">
+          <div style="font-size:14px;font-weight:500;color:#333;font-family:monospace">$8M</div>
+          <div style="font-size:10px;color:#888;font-family:monospace">B25</div>
+          <div style="color:#1E8449;font-size:11px;font-weight:700;font-family:monospace">▼42.9%</div>
+        </div><div style="text-align:center;padding:6px 4px;border-radius:5px;background:#A0400009;border:1px dashed #A0400044">
+          <div style="font-size:14px;font-weight:700;color:#A04000;font-family:monospace">$6M</div>
+          <div style="font-size:10px;color:#888;font-family:monospace">B26</div>
+          <div style="color:#1E8449;font-size:11px;font-weight:700;font-family:monospace">▼25.0%</div>
+        </div></div>
+
+  <div class="meta-row">
+    <span class="badge">PROJECTED</span>
+    <button class="dl-btn" onclick="exportPNG()">↓ Export PNG</button>
+  </div>
+
+  <div class="note-box">
+    <p style="margin-bottom:8px">Marae infrastructure, Te Ringa Hāpai Whenua. B23: ~$28M. B24: Te Ringa Hāpai Whenua Fund cut. B25: no fund.</p>
+    <div class="b26-note"><strong>B26: </strong>No dedicated marae fund. 40 kura on property backlog. Trajectory continues.</div>
+  </div>
+
+  <div class="footer-attr">Source: budget.govt.nz · Treasury estimates · RNZ · Spinoff · Waatea News · tinangata.com</div>
+</div>
+
+<script>
+const ctx = document.getElementById('chart').getContext('2d');
+const chart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ["B23", "B24", "B25", "B26 \u25c8"],
+    datasets: [{
+      data: [28, 14, 8, 6],
+      borderColor: '#A04000',
+      pointBackgroundColor: ["#A04000", "#A04000", "#A04000", "#fff"],
+      pointBorderColor: ["#A04000", "#A04000", "#A04000", "#A04000"],
+      pointBorderWidth: [0, 0, 0, 2.5],
+      pointRadius: [5, 5, 5, 7],
+      pointHoverRadius: 8,
+      borderWidth: 3,
+      tension: 0.3,
+      fill: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => {
+            const v = ctx.raw;
+            if(v>=1000)return '$'+(v/1000).toFixed(1)+'B';return '$'+v.toFixed(0)+'M';
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: '#F0EDE8' },
+        ticks: { color: '#333', font: { size: 12, family: 'monospace' } }
+      },
+      y: {
+        grid: { color: '#F0EDE8' },
+        ticks: {
+          color: '#333',
+          font: { size: 11, family: 'monospace' },
+          callback: function(v){if(v>=1000)return'$'+(v/1000).toFixed(1)+'B';return'$'+v.toFixed(0)+'M';}
+        }
+      }
+    }
+  }
+});
+
+function exportPNG() {
+  const off = document.createElement('canvas');
+  off.width = chart.canvas.width;
+  off.height = chart.canvas.height;
+  const c = off.getContext('2d');
+  c.fillStyle = '#ffffff';
+  c.fillRect(0, 0, off.width, off.height);
+  c.drawImage(chart.canvas, 0, 0);
+  const a = document.createElement('a');
+  a.download = 'marae-B23-B26.png';
+  a.href = off.toDataURL('image/png');
+  a.click();
+}
+</script>
+</body>
+</html>
