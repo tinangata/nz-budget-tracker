@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Māori Language & Culture Funding — B23–B26</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', serif; background: #F5F4F0; color: #111; padding: 28px; min-height: 100vh; }
+
+  .eyebrow { font-family: monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+  h1 { font-size: 22px; font-weight: normal; font-style: italic; color: #111; line-height: 1.2; margin-bottom: 4px; }
+  .subtitle { font-family: monospace; font-size: 11px; color: #888; margin-bottom: 24px; }
+
+  .card { background: #fff; border-radius: 10px; border: 1.5px solid #E5E2DC; padding: 16px 18px; margin-bottom: 14px; }
+  .card-label { font-family: monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: #999; margin-bottom: 12px; }
+  .chart-wrap { position: relative; height: 320px; }
+
+  .footnote { font-family: monospace; font-size: 10px; color: #aaa; line-height: 1.65; padding: 10px 14px; background: #fff; border: 1px solid #E5E2DC; border-radius: 6px; }
+</style>
+</head>
+<body>
+
+<div class="eyebrow">Aotearoa NZ · Budget Tracker · B23–B26</div>
+<h1>Māori Language &amp; Culture Funding</h1>
+<div class="subtitle">Te reo infrastructure · Broadcasting · Matariki · Aotearoa Reorua</div>
+
+<div class="card">
+  <div class="card-label">Aggregate funding trend · $M nominal</div>
+  <div class="chart-wrap">
+    <canvas id="mainChart"></canvas>
+  </div>
+</div>
+
+<div class="footnote">
+  DATA NOTE · Aggregate figures estimated from Vote Māori Development, Te Māngai Pāho appropriations, and Ministry for Culture &amp; Heritage Budget documents (B23–B25). Individual stream figures are approximate where not separately appropriated in public Vote documents. B26 (◈) figures are projected from trajectory; Budget 2026 delivers 28 May 2026. Kapa haka is excluded from all figures in this document.
+</div>
+
+<script>
+const ctx = document.getElementById('mainChart').getContext('2d');
+const grad = ctx.createLinearGradient(0, 0, 0, 320);
+grad.addColorStop(0, 'rgba(231,76,60,0.15)');
+grad.addColorStop(1, 'rgba(231,76,60,0.01)');
+
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['B23 (Labour)', 'B24', 'B25', 'B26 ◈'],
+    datasets: [{
+      label: 'Māori Language & Culture ($M)',
+      data: [165, 108, 79, 62],
+      borderColor: '#E74C3C',
+      backgroundColor: grad,
+      borderWidth: 3,
+      pointRadius: [5, 5, 5, 7],
+      pointBackgroundColor: ['#E74C3C', '#E74C3C', '#E74C3C', '#fff'],
+      pointBorderColor: '#E74C3C',
+      pointBorderWidth: [0, 0, 0, 2.5],
+      fill: true,
+      tension: 0.35,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#fff',
+        borderColor: '#DDD',
+        borderWidth: 1,
+        titleColor: '#888',
+        bodyColor: '#C0392B',
+        titleFont: { family: 'monospace', size: 10 },
+        bodyFont: { family: 'monospace', size: 13, weight: '700' },
+        padding: 12,
+        callbacks: { label: c => ` $${c.parsed.y}M` }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: '#F0EDE8' },
+        ticks: { font: { family: 'monospace', size: 11 }, color: '#555' },
+        border: { display: false }
+      },
+      y: {
+        grid: { color: '#F0EDE8' },
+        ticks: { font: { family: 'monospace', size: 10 }, color: '#999', callback: v => `$${v}M` },
+        border: { display: false },
+        min: 0, max: 190,
+        title: { display: true, text: '$M nominal', font: { family: 'monospace', size: 9 }, color: '#bbb' }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
