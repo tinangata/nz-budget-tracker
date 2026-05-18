@@ -1,2 +1,2 @@
 # nz-budget-tracker
-Tracks Maori spend trajectory since 2023 and compares to other spends
+Tracks Māori spend trajectory since 2023 and compares to other spends
