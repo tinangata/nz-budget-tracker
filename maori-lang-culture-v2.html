@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Māori Language & Culture Funding — B23–B26</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', serif; background: #F5F4F0; color: #111; padding: 28px; min-height: 100vh; }
+
+  .header { margin-bottom: 24px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+  .header-text .eyebrow { font-family: monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+  .header-text h1 { font-size: 22px; font-weight: normal; font-style: italic; color: #111; line-height: 1.2; margin-bottom: 4px; }
+  .header-text .subtitle { font-family: monospace; font-size: 11px; color: #888; }
+
+  .dl-btn { background: #111; color: #fff; border: none; border-radius: 6px; padding: 9px 18px; font-family: monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-block; white-space: nowrap; }
+  .dl-btn:hover { background: #333; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+  .card { background: #fff; border-radius: 10px; border: 1.5px solid #E5E2DC; padding: 16px 18px; }
+  .card.full { grid-column: 1 / -1; }
+  .card.accent { border-left: 4px solid #E74C3C; }
+
+  .card-label { font-family: monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: #999; margin-bottom: 8px; }
+  .big-num { font-family: monospace; font-size: 26px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .card-sub { font-size: 11px; color: #888; font-family: monospace; line-height: 1.5; }
+
+  .year-cell { text-align: center; padding: 10px 6px; border-radius: 6px; background: #FAFAF8; border: 1px solid #EEE; }
+  .year-cell.b26 { background: #FEF0EF; border: 1.5px dashed #E74C3C66; }
+  .year-val { font-family: monospace; font-size: 15px; font-weight: 700; color: #333; }
+  .year-cell.b26 .year-val { color: #C0392B; }
+  .year-lbl { font-family: monospace; font-size: 9px; color: #999; text-transform: uppercase; margin-top: 2px; }
+  .year-chg { font-family: monospace; font-size: 10px; font-weight: 700; margin-top: 3px; }
+  .red { color: #C0392B; } .grn { color: #1E8449; } .neu { color: #999; }
+
+  .chart-wrap { position: relative; height: 280px; }
+
+  .stream-list { display: flex; flex-direction: column; gap: 8px; }
+  .stream { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 14px; padding: 10px 13px; border-radius: 7px; background: #FAFAF8; border: 1px solid #EEE; }
+  .stream-name { font-size: 12px; font-weight: 600; color: #222; }
+  .stream-detail { font-size: 10px; color: #999; font-family: monospace; margin-top: 2px; }
+  .stream-amt { font-family: monospace; font-size: 12px; font-weight: 700; text-align: right; white-space: nowrap; }
+  .stream-chg { font-family: monospace; font-size: 11px; font-weight: 700; text-align: right; white-space: nowrap; }
+
+  .badge { display: inline-block; font-size: 9px; font-family: monospace; font-weight: 700; padding: 2px 7px; border-radius: 3px; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 3px; }
+  .badge.cut { background: #FDEDEC; color: #922B21; border: 1px solid #E74C3C44; }
+  .badge.removed { background: #F5EEF8; color: #6C3483; border: 1px solid #A569BD44; }
+  .badge.projected { background: #FEF9E7; color: #9A7D0A; border: 1px solid #F1C40F44; }
+  .badge.flat { background: #F0F0F0; color: #666; border: 1px solid #CCC; }
+
+  .context-body { font-size: 13px; color: #444; line-height: 1.85; }
+  .context-body p { margin-bottom: 10px; }
+  .context-body p:last-child { margin-bottom: 0; font-style: italic; color: #777; font-size: 12px; }
+
+  .footnote { font-family: monospace; font-size: 10px; color: #aaa; line-height: 1.65; padding: 10px 14px; background: #fff; border: 1px solid #E5E2DC; border-radius: 6px; margin-top: 14px; }
+
+  @media (max-width: 580px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .card.full { grid-column: 1; }
+    .stream { grid-template-columns: 1fr auto; }
+    .stream-chg { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-text">
+    <div class="eyebrow">Aotearoa NZ · Budget Tracker · B23–B26</div>
+    <h1>Māori Language &amp; Culture Funding</h1>
+    <div class="subtitle">Te reo infrastructure · Broadcasting · Matariki · Aotearoa Reorua</div>
+  </div>
+  <a class="dl-btn" id="dlBtn" href="#" download="maori-language-culture-funding.html">⬇ Download</a>
+</div>
+
+<!-- Year summary -->
+<div class="grid-4">
+  <div class="year-cell">
+    <div class="year-val">$165M</div>
+    <div class="year-lbl">B23 · Labour</div>
+    <div class="year-chg neu">baseline</div>
+  </div>
+  <div class="year-cell">
+    <div class="year-val">$108M</div>
+    <div class="year-lbl">B24</div>
+    <div class="year-chg red">▼ 35%</div>
+  </div>
+  <div class="year-cell">
+    <div class="year-val">$79M</div>
+    <div class="year-lbl">B25</div>
+    <div class="year-chg red">▼ 27%</div>
+  </div>
+  <div class="year-cell b26">
+    <div class="year-val">$62M</div>
+    <div class="year-lbl">B26 ◈ proj.</div>
+    <div class="year-chg red">▼ 22%</div>
+  </div>
+</div>
+
+<!-- Stat cards -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-label">Total reduction · B23 → B26</div>
+    <div class="big-num red">▼ 62%</div>
+    <div class="card-sub">~$103M removed from language &amp; culture infrastructure across three coalition budgets</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Maihi Karauna target</div>
+    <div class="big-num" style="color:#555">1M</div>
+    <div class="card-sub">speakers by 2040 — Crown strategy intact on paper; funding machinery dismantled in practice</div>
+  </div>
+</div>
+
+<!-- Chart -->
+<div class="card full" style="margin-bottom:14px">
+  <div class="card-label">Aggregate funding trend · $M nominal</div>
+  <div class="chart-wrap">
+    <canvas id="mainChart"></canvas>
+  </div>
+</div>
+
+<!-- Streams -->
+<div class="card full" style="margin-bottom:14px">
+  <div class="card-label" style="margin-bottom:12px">Key Funding Streams</div>
+  <div class="stream-list">
+
+    <div class="stream">
+      <div>
+        <div class="stream-name">Aotearoa Reorua / Bilingual Towns</div>
+        <div class="stream-detail">Community-level immersive language environments — most ambitious te reo programme</div>
+      </div>
+      <div class="stream-amt red">~$1.4M</div>
+      <div>
+        <div class="stream-chg red">▼ 64%</div>
+        <span class="badge cut">B24 cut</span>
+      </div>
+    </div>
+
+    <div class="stream">
+      <div>
+        <div class="stream-name">Te Reo Public Signage</div>
+        <div class="stream-detail">Bilingual signage in public spaces and government buildings</div>
+      </div>
+      <div class="stream-amt" style="color:#6C3483">$0</div>
+      <div>
+        <div class="stream-chg" style="color:#6C3483">▼ 100%</div>
+        <span class="badge removed">Removed</span>
+      </div>
+    </div>
+
+    <div class="stream">
+      <div>
+        <div class="stream-name">Matariki Crown Programming</div>
+        <div class="stream-detail">Crown contribution to Matariki events, culture, and public programming</div>
+      </div>
+      <div class="stream-amt red">~$3M</div>
+      <div>
+        <div class="stream-chg red">▼ 45%</div>
+        <span class="badge cut">B24 cut</span>
+      </div>
+    </div>
+
+    <div class="stream">
+      <div>
+        <div class="stream-name">Māori Television / Te Māngai Pāho</div>
+        <div class="stream-detail">Māori Broadcasting Funding Agency and Māori TV direct Crown funding</div>
+      </div>
+      <div class="stream-amt red">reduced</div>
+      <div>
+        <div class="stream-chg red">▼ cut</div>
+        <span class="badge cut">B24 cut</span>
+      </div>
+    </div>
+
+    <div class="stream">
+      <div>
+        <div class="stream-name">Iwi Radio / Te Māngai Pāho regional</div>
+        <div class="stream-detail">Regional iwi radio stations — part of same broadcasting squeeze</div>
+      </div>
+      <div class="stream-amt red">reduced</div>
+      <div>
+        <div class="stream-chg red">▼ cut</div>
+        <span class="badge cut">B24–B25</span>
+      </div>
+    </div>
+
+    <div class="stream">
+      <div>
+        <div class="stream-name">Te Taura Whiri i te Reo Māori</div>
+        <div class="stream-detail">Māori Language Commission — standards, strategy, certification</div>
+      </div>
+      <div class="stream-amt neu">stable–</div>
+      <div>
+        <div class="stream-chg neu">→ flat</div>
+        <span class="badge flat">Flat / proj.</span>
+      </div>
+    </div>
+
+    <div class="stream">
+      <div>
+        <div class="stream-name">Waiata, Taonga Pūoro, Performing Arts</div>
+        <div class="stream-detail">Contestable funds for Māori arts practice (excl. kapa haka)</div>
+      </div>
+      <div class="stream-amt red">reduced</div>
+      <div>
+        <div class="stream-chg red">▼ cut</div>
+        <span class="badge projected">Projected</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Context -->
+<div class="card full accent" style="margin-bottom:14px">
+  <div class="card-label" style="margin-bottom:10px">Strategic & Legal Context</div>
+  <div class="context-body">
+    <p>The B23 baseline of $165M reflects Labour's Maihi Karauna strategy — the Crown's Māori language strategy committing to a goal of one million te reo speakers by 2040. The coalition has not formally repudiated this strategy, but has defunded the machinery required to achieve it. The bilingual towns programme was the most ambitious attempt to create immersive language environments outside the home and classroom; its 64% cut, alongside the removal of te reo signage funding and reductions to broadcasting, removes the transmission infrastructure that living language revitalisation depends on.</p>
+    <p>For CERD and UNDRIP purposes: ICERD Article 5 protects equality in the enjoyment of cultural rights; UNDRIP Articles 13–15 establish Indigenous peoples' rights to revitalise, use, develop, and transmit their languages and cultures. The pattern here — nominal Crown strategy intact, funding infrastructure removed — is precisely the kind of de facto breach that shadow reporting is designed to surface. The Crown cannot claim compliance with language rights obligations while systematically defunding the conditions under which language transmission is possible.</p>
+  </div>
+</div>
+
+<div class="footnote">
+  DATA NOTE · Aggregate figures estimated from Vote Māori Development, Te Māngai Pāho appropriations, and Ministry for Culture &amp; Heritage Budget documents (B23–B25). Individual stream figures are approximate where not separately appropriated in public Vote documents. B26 (◈) figures are projected from trajectory; Budget 2026 delivers 28 May 2026 and should be used to update these figures. Te Matatini (kapa haka) is excluded from all figures in this document.
+</div>
+
+<script>
+// Download button — serialize current page
+document.getElementById('dlBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'maori-language-culture-funding.html';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+// Chart
+const ctx = document.getElementById('mainChart').getContext('2d');
+const grad = ctx.createLinearGradient(0, 0, 0, 280);
+grad.addColorStop(0, 'rgba(231,76,60,0.15)');
+grad.addColorStop(1, 'rgba(231,76,60,0.01)');
+
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['B23 (Labour)', 'B24', 'B25', 'B26 ◈'],
+    datasets: [{
+      label: 'Māori Language & Culture ($M)',
+      data: [165, 108, 79, 62],
+      borderColor: '#E74C3C',
+      backgroundColor: grad,
+      borderWidth: 3,
+      pointRadius: [5, 5, 5, 7],
+      pointBackgroundColor: ['#E74C3C', '#E74C3C', '#E74C3C', '#fff'],
+      pointBorderColor: '#E74C3C',
+      pointBorderWidth: [0, 0, 0, 2.5],
+      fill: true,
+      tension: 0.35,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#fff',
+        borderColor: '#DDD',
+        borderWidth: 1,
+        titleColor: '#888',
+        bodyColor: '#C0392B',
+        titleFont: { family: 'monospace', size: 10 },
+        bodyFont: { family: 'monospace', size: 13, weight: '700' },
+        padding: 12,
+        callbacks: { label: c => ` $${c.parsed.y}M` }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: '#F0EDE8' },
+        ticks: { font: { family: 'monospace', size: 11 }, color: '#555' },
+        border: { display: false }
+      },
+      y: {
+        grid: { color: '#F0EDE8' },
+        ticks: { font: { family: 'monospace', size: 10 }, color: '#999', callback: v => `$${v}M` },
+        border: { display: false },
+        min: 0, max: 190,
+        title: { display: true, text: '$M nominal', font: { family: 'monospace', size: 9 }, color: '#bbb' }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
